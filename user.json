@@ -1,0 +1,13 @@
+{
+  "keyword-file-dir": ".\\词库",
+  "keyword-file-ext": ".lexicon",
+  "keyword-mark-map":
+  {
+    "人名": "N1",
+    "地名": "N2",
+    "机构名": "N3"
+  },
+  "mark": "N",
+  "min-keyword-length" : 2,
+  "max-keyword-length" : 10
+}
