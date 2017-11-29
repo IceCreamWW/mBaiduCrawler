@@ -8,15 +8,19 @@
         "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063"
 	],
-	"max-thread" : 5,
+	"max-thread" : 10,
 	"max-process" : 2,
-	"min-marks" : 5,
+	"min-marks" : 2,
     "min-contents" : 50,
     "max-contents" : 100,
     "max-urls" : 10000000,
     "err-rate" : 0.01,
-    "max-page" : 1,
-    "check-interval" : 10,
+    "max-page" : 2,
+    "check-net-interval" : 20,
+    "check-queue-interval" : 5,
     "timeout" : 10,
-    "keyword-config" : ".\\user.json"
+    "keyword-config" : ".\\user.json",
+    "TEXT-MARK" : ["strong", "p", "b", "em", "s", "l", "a", "h1", "h2", "h3", "span"],
+    "DEL-MARK" : ["button", "script", "style"]
+  
 }

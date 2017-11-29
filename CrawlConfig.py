@@ -3,8 +3,6 @@ import logging
 import logging.handlers
 from random import randrange
 
-
-
 class CrawlConfig:
     def __init__(self, common_config_path=".\\common.json"):
         self.common_config_path = common_config_path
@@ -34,9 +32,12 @@ class CrawlConfig:
             self.max_urls = configs["max-urls"]
             self.err_rate = configs["err-rate"]
             self.max_page = configs["max-page"]
-            self.check_interval = configs["check-interval"]
+            self.check_net_interval = configs["check-net-interval"]
+            self.check_queue_interval = configs["check-queue-interval"]
             self.timeout = configs["timeout"]
             self.keyword_config = configs["keyword-config"]
+            self.TEXT_MARK = configs["TEXT-MARK"]
+            self.DEL_MARK = configs["DEL-MARK"]
 
     def log_config(self, record_queue):
         h = logging.handlers.QueueHandler(record_queue)

@@ -22,7 +22,8 @@ class Listener(multiprocessing.Process):
 
     @staticmethod
     def configure():
-        h = logging.FileHandler(filename='crawl.log', encoding='u8')
+        h = logging.handlers.RotatingFileHandler(filename='crawl.log',mode='a', encoding='u8',
+                                                 maxBytes=10*1024*1024, backupCount=5)
         c = logging.StreamHandler()
         f = logging.Formatter("%(asctime)s - %(processName)s - %(levelname)s - %(message)s",
                               datefmt="%y-%m-%d %H:%M:%S")

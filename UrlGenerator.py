@@ -6,29 +6,35 @@ from CrawlConfig import CrawlConfig
 
 
 class UrlGenerator(Thread, CrawlConfig):
-    def __init__(self, keywords, url_queue, crawl_event):
+    def __init__(self, keywords, hints, url_queue, net_event):
         CrawlConfig.__init__(self)
         Thread.__init__(self)
         self.keywords = keywords
+        self.hints = hints
         self.url_queue = url_queue
-        self.crawl_event = crawl_event
+        self.net_event = net_event
 
     def run(self):
         self.crawl()
 
     def crawl(self):
         for keyword in self.keywords:
+            logging.info("Current keyword : " + keyword)
+            
             for i in range(0, self.max_page * 10, 10):
-
-                baidu_url = "http://www.baidu.com/s?q3=" + \
-                            keyword + "&pn=" + str(i)
+                baidu_url = "http://www.baidu.com/s?wd=" + \
+                            keyword + " " + self.hints[keyword] + "&pn=" + str(i)
                 try:
                     html = requests.get(baidu_url, timeout=self.timeout)
                 except:
                     logging.warning('Wait')
-                    self.crawl_event.wait()
+
+                    self.net_event.clear()
+                    self.net_event.wait()
+
                     logging.warning('Continue')
-                    self.crawl_event.clear()
+                    self.net_event.clear()
+                    i -= 1
                     continue
 
                 urls = re.findall(

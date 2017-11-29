@@ -5,7 +5,7 @@ from threading import Thread
 
 
 class CrawlerThread(Thread, CrawlConfig):
-    def __init__(self, url_queue, content_queue, crawl_event, bloom_lock, dirty_urls):
+    def __init__(self, url_queue, content_queue, crawl_event, net_event, bloom_lock, dirty_urls):
         Thread.__init__(self)
         CrawlConfig.__init__(self)
         self.setDaemon(True)
@@ -14,6 +14,7 @@ class CrawlerThread(Thread, CrawlConfig):
         self.content_queue = content_queue
         self.bloom_lock = bloom_lock
         self.dirty_urls = dirty_urls
+        self.net_event = net_event
         self.completed = False
 
     def run(self):
@@ -50,14 +51,14 @@ class CrawlerThread(Thread, CrawlConfig):
             if self.content_queue.qsize() >= self.max_contents:
                 logging.warning("Wait : content -  " + str(self.content_queue.qsize()) +
                                 " > " + str(self.max_contents))
+                self.crawl_event.clear()
                 self.crawl_event.wait()
                 logging.warning("Continue : content - " + str(self.content_queue.qsize()))
-                self.crawl_event.clear()
         except TimeoutError:
             logging.warning("TimeOut")
-            self.crawl_event.wait()
+            self.net_event.clear()
+            self.net_event.wait()
             logging.warning("Continue : TimeOut")
-            self.crawl_event.clear()
         except Exception as e:
             if html is None:
                 logging.warning("Unknown Exception : " + str(type(e)) + " -  html is None")

@@ -1,25 +1,20 @@
-import re
+﻿import re
 import os
 import logging
 
-from KeyWordsDealer import KeyWordsDealer
 from CrawlConfig import CrawlConfig
 from multiprocessing import Process
 
 
-class ContextDealer(Process, CrawlConfig, KeyWordsDealer):
-    def __init__(self, crawl_event, file_lock, file_cnt, content_queue, mark, markers, record_queue):
+class ContextDealer(Process, CrawlConfig):
+    def __init__(self, file_lock, file_cnt, content_queue, mark, markers, record_queue):
         Process.__init__(self)
         CrawlConfig.__init__(self)
-        KeyWordsDealer.__init__(self)
         self.markers = markers
-        self.TEXT_MARK = ('strong', 'p', 'b', 'em', 's', 'l', 'a', 'h1', 'h2', 'h3', 'span')
-        self.DEL_MARK = ('button', 'script', 'style')
         self.file_lock = file_lock
         self.record_queue = record_queue
         self.mark = mark
         self.file_cnt = file_cnt
-        self.crawl_event = crawl_event
         self.content_queue = content_queue
         self.url = ""
 
@@ -37,8 +32,6 @@ class ContextDealer(Process, CrawlConfig, KeyWordsDealer):
 
             content = self.content_filter(content)
             self.result_writer(content)
-            if self.content_queue.qsize() <= self.min_contents:
-                self.crawl_event.set()
 
     def content_filter(self, content):
         # 删除所有HTML符号实体
@@ -57,18 +50,18 @@ class ContextDealer(Process, CrawlConfig, KeyWordsDealer):
         content = re.sub(r'[\n\r ]{2,}', '\n', content)
         content = re.sub(r'[^\u4E00-\u9FA5（）【】，。？：“”‘’！《》*·]{30,}', '\n', content, flags=re.A)
         # 格式处理
-        content = re.sub(r'^[\n ]+', '', content)
-        content = re.sub(r'[\n ]+$', '', content)
+        content = re.sub(r'^[\n \t]+', '', content)
+        content = re.sub(r'[\n \t]+$', '', content)
         # 删除单行过短
         content = re.sub(r'(?<=\n)[^\n]{0,10}\n', '', content)
-        # 开始文本标记
+        # 开始文本标记 忽略大小写
         for keyword in self.markers:
             content = re.sub(
                 '(?i)' + keyword, '[' + keyword + '][' + self.markers[keyword] + ']', content)
         return content
 
     def result_writer(self, content):
-        if len(content) < 1500:
+        if len(content) < 1000:
             logging.warning("Deleted : Too Short - " + self.url)
             return
         if len(re.findall('\[' + self.mark + '\d\]', content)) < self.min_marks:
