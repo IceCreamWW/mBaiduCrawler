@@ -17,6 +17,7 @@ class ContextDealer(Process, CrawlConfig):
         self.file_cnt = file_cnt
         self.content_queue = content_queue
         self.url = ""
+        os.makedirs(".\\语料", exist_ok=True)
 
     def run(self):
         self.log_config(self.record_queue)
