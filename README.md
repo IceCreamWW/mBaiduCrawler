@@ -1,21 +1,28 @@
-*	<h3>目录</h3>
-	*	<a href="#instruction">使用说明</a>
-	*	<a href="#user_json">字典和标记</a>
-		*	<a href="#user_json_example">user.json 示例</a>
-	*	<a href="#common_json">并行和规则</a>
-		*	<a href="#common_json_example">common.json 示例</a>
-	*	<a href="#dependencies">依赖的库</a>
-	*	<a href="#exceptions">已知的bug</a>
+
+*	目录
+	*	[使用说明](#instruction)
+	*	[字典和标记](#user_json)
+		*	[user.json 示例](#user_json_example)
+	*	[并行和规则](#common_json)
+		*	[common.json 示例](#common_json_example)
+	*	[依赖的库](#dependencies)
+	*	[已知的bug](#exceptions)
+	
 ___
+
 <div id='instruction'></div>
-###使用说明
+
+### 使用说明
 
 按照参数说明配置 **词典文件** 和 **标记方式**, 运行 **main.py**
 
 **仓库中的词典和标记是一组可以运行的配置**。
+
 ___
+
 <div id='user_json'></div>
-###字典和标记（user.json 参数说明）
+
+### 字典和标记（user.json 参数说明）
 *	**keyword-file-dir**
 	*	词库目录
 	*	程序会扫描这个文件夹下的[词典](#1)(仅一层)
@@ -40,9 +47,11 @@ ___
 
 *	**min/max-keyword-length**
 	*	筛选关键词时的限制长度
+
 ___
 
-###user.json 示例
+### user.json 示例
+
 <div id='user_json_example'></div>
 
 ```json
@@ -74,8 +83,11 @@ ___
 ```
 
 ___
+
 <div id="common_json"></div>
-###并行和规则（common.json参数说明）
+
+### 并行和规则（common.json参数说明）
+
 *	**ban-urls**
 	*	含有这个列表内容的网址不会被爬取
 	*	通常是因为
@@ -118,7 +130,8 @@ ___
 	*	（因为它们通常只控制字体，并不区分内容含义）
 ___	
 <div id="common_json_example"></div>
-###common.json 示例
+
+### common.json 示例
 ```json
 {
 	"ban-urls" : ["image","iqiyi","video","music"],
@@ -147,15 +160,19 @@ ___
   
 }
 ```
-###
+
 ___
 <div id="dependencies"></div>
-###依赖的库
+
+### 依赖的库
+
 *	bs4
 *	requests
 *	pybloom_live
+
 ___
 <div id="exceptions"></div>
 
-###已知的问题
-	*	urlgenerator 不会因为其中的内容大量积存而暂停，导致如果爬取量过大，会占用1G以上内存
+### 已知的问题
+
+*	urlgenerator 不会因为其中的内容大量积存而暂停，导致如果爬取量过大，会占用1G以上内存
