@@ -56,28 +56,28 @@ ___
 
 ```json
 {
-  "keyword-file-dir": ".\\词库",
-  "keyword-file-ext": ".lexicon",
-  "keyword-mark-map":
-  {
-    "医院": "M1",
-    "疾病": "M2",
-    "科室": "M3",
-    "药品": "M4",
-    "症状": "M5"
+	"keyword-file-dir": ".\\词库",
+	"keyword-file-ext": ".lexicon",
+	"keyword-mark-map":
+	{
+	"医院": "M1",
+	"疾病": "M2",
+	"科室": "M3",
+	"药品": "M4",
+	"症状": "M5"
 
-  },
-  "keyword-hint-map":
-  {
-    "医院": "医院",
-    "疾病": "病因",
-    "科室": "科室",
-    "药品": "药",
-    "症状": "症状"
-  },
-  "mark": "M",
-  "min-keyword-length" : 2,
-  "max-keyword-length" : 20
+	},
+	"keyword-hint-map":
+	{
+	"医院": "医院",
+	"疾病": "病因",
+	"科室": "科室",
+	"药品": "药",
+	"症状": "症状"
+	},
+	"mark": "M",
+	"min-keyword-length" : 2,
+	"max-keyword-length" : 20
 }
 
 ```
@@ -138,25 +138,25 @@ ___
 	"user-agents" :
 	[
 		"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1",
-        "Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0",
-        "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063"
+	"Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0",
+	"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36",
+	"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
+	"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36 Edge/15.15063"
 	],
 	"max-thread" : 10,
 	"max-process" : 2,
 	"min-marks" : 2,
-    "min-contents" : 50,
-    "max-contents" : 100,
-    "max-urls" : 10000000,
-    "err-rate" : 0.01,
-    "max-page" : 2,
-    "check-net-interval" : 20,
-    "check-queue-interval" : 5,
-    "timeout" : 10,
-    "keyword-config" : ".\\user.json",
-    "TEXT-MARK" : ["strong", "p", "b", "em", "s", "l", "a", "h1", "h2", "h3", "span"],
-    "DEL-MARK" : ["button", "script", "style"]
+   	"min-contents" : 50,
+	"max-contents" : 100,
+	"max-urls" : 10000000,
+	"err-rate" : 0.01,
+	"max-page" : 2,
+	"check-net-interval" : 20,
+	"check-queue-interval" : 5,
+	"timeout" : 10,
+	"keyword-config" : ".\\user.json",
+	"TEXT-MARK" : ["strong", "p", "b", "em", "s", "l", "a", "h1", "h2", "h3", "span"],
+	"DEL-MARK" : ["button", "script", "style"]
   
 }
 ```
