@@ -1,5 +1,5 @@
 
-*	目录
+*	**目录**
 	*	[使用说明](#instruction)
 	*	[字典和标记](#user_json)
 		*	[user.json 示例](#user_json_example)
